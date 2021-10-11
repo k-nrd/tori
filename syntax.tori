@@ -1,0 +1,83 @@
+fn add a, b {
+  a + b
+}
+
+let add (a, b) {
+  a + b
+}
+
+
+fn fibfast(n)
+  if {n < 2}
+    n
+    fibup n 2 1 0
+
+fn add(a, b)
+  {a + b}
+
+a, b => {
+  a + b
+}
+
+x, y, s => {
+  x * s + y
+}
+
+() {}
+
+fn fetch (callback) {
+  ...do stuff
+}
+
+handle_result :: Tuple(Atom, Any) -> String
+handle_result = fn
+  {:ok, result} -> IO.puts "Handling result..."
+  {:ok, _} -> IO.puts "This would be never run as previous will be matched beforehand."
+  {:error} -> IO.puts "An error has occurred!"
+end
+
+add :: Int -> Int -> Int
+fn add
+  a, b -> a + b
+end
+
+ty safe_div : Int -> Int -> Int
+fn safe_div {
+  a, 0 -> 0
+  a, b -> a / b
+}
+
+
+ty fibfast : Int -> Int
+fn fibfast {
+  n | n < 2 -> n
+  n -> fibup(n, 2, 1, 0)
+}
+
+OR
+
+ty safe_div: Int -> Int -> Int
+fn safe_div: a, 0 -> 0
+fn safe_div: a, b -> a+ b
+
+ty add : Int -> Int -> Int
+fn add {
+  a, b -> a + b
+}
+
+fn safe_div :: Int -> Int -> Int  
+  a, 0 => 0
+  a, b => a + b
+end
+
+fn fibfast :: Int -> Int
+  n | n < 2 -> n
+  n -> fibup(n, 2, 1, 0)
+end
+
+<expr> <label> : <singleline body>
+<expr> <label> {
+  <multiline body>
+}
+
+<arg list> -> <fn body>
