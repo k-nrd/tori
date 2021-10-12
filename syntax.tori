@@ -75,9 +75,96 @@ fn fibfast :: Int -> Int
   n -> fibup(n, 2, 1, 0)
 end
 
-<expr> <label> : <singleline body>
-<expr> <label> {
-  <multiline body>
-}
+fn n -> fibup(n, 2, 1, 0) end
 
-<arg list> -> <fn body>
+ty safe_div: Int -> Int -> Int
+fn safe_div
+  a, 0 -> 0
+  a, b -> a / b
+end
+
+fn : x -> x + 2
+
+let safe_div: Int -> Int -> Int =
+  a, 0 -> 0
+  a, b -> 
+    a / b
+
+<exprtype> <exprlabel> : <sameline body>
+<exprtype> <exprlabel> =
+  <indented body>
+
+
+<exprsymbol> <exprlabel> <: exprtype>?
+  <exprbody>
+
+let 
+  x = 1
+in
+  x
+
+type Person
+  age: Int
+  address: String
+  permissions: Permissions
+  relatives: [Person]
+
+fn fib: Int -> Int
+  n | n < 2 -> n
+  n -> 
+    fib (n - 1) + fib (n - 2)
+
+fn into_address: [Person] -> [String]
+  persons -> 
+    map (p -> p.address) (persons)
+
+fn into_address: [Person] -> [String]
+  map (p -> p.address) // evaluates to lambda
+
+fn factorial: Int -> Int
+  n -> 
+    if n == 0 
+      1
+    else 
+      n * factorial (n - 1)
+
+fn factorial: Int -> Int
+  n | n == 0 -> 1
+  n -> n * factorial (n - 1)
+
+case n: Int
+  0 -> 0
+  1 -> 1
+  n -> n
+
+// desugar into case
+fn fib: Int -> Int
+  n ->
+    case n
+      0 -> 0
+      1 -> 1
+      n -> 
+        fib (n - 1) + fib (n - 2)
+
+// sugared
+fn fib: Int -> Int
+  0 -> 0
+  1 -> 1
+  n -> 
+    fib (n - 1) + fib (n - 2)
+
+fn from_string: String -> Bool
+  "true" -> true
+  _ -> false
+
+fn to_string: Bool -> String
+  true -> "true"
+  false -> "false"
+
+fn gcd_v2: Int -> Int -> Int
+  n 0 -> n
+  0 n -> n
+  n m | n > m -> gcd_v2 (n - m) (m)
+      | otherwise -> gcd_v2 (n) (m - n)
+
+lambda: <arg list> -> <fn body>
